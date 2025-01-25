@@ -27,6 +27,24 @@ namespace MyLetterbox
             _state = state;
         }
 
+        public void CompleteCurrentStateImmediately()
+        {
+            var target = new Vector2(up.rectTransform.sizeDelta.x, DefaultSize);
+            
+            switch (_state)
+            {
+                case State.Covered:
+                    target = new Vector2(up.rectTransform.sizeDelta.x, CoveredSize);
+                    break;
+                case State.ZoomIn:
+                    target = new Vector2(up.rectTransform.sizeDelta.x, ZoomInSize);
+                    break;
+            }
+            
+            up.rectTransform.sizeDelta = target;
+            down.rectTransform.sizeDelta = target;
+        }
+
         private void Update()
         {
             var current = up.rectTransform.sizeDelta;

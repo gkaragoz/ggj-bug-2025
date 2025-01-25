@@ -9,6 +9,7 @@ public class HorizontalCharacterController : MonoBehaviour
     private const string SpeedParam = "Speed";
     private const string ShouldTurnAroundParam = "ShouldTurnAround";
 
+    private AudioSource walkAudioSource;
     private Rigidbody rb;
     private Vector3 movement;
     private bool facingRight = true;

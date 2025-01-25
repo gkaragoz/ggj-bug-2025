@@ -1,3 +1,4 @@
+using GameSequence;
 using MyLetterbox;
 using UnityEngine;
 
@@ -54,14 +55,18 @@ namespace MyCamera
             {
                 selfCamera.fieldOfView = Mathf.Lerp(selfCamera.fieldOfView, _targetFov, _fovTransitionSpeed * Time.deltaTime);
                 stackCamera.fieldOfView = selfCamera.fieldOfView;
-                letterbox.SetState(Letterbox.State.ZoomIn);
+                
+                if (ActOneBeginSequence.ActOneState == -1)
+                    letterbox.SetState(Letterbox.State.ZoomIn);
             }
             // Kamera bölgeden çıktıysa başlangıç FOV'una geri dön
             else
             {
                 selfCamera.fieldOfView = Mathf.Lerp(selfCamera.fieldOfView, _initialFov, _fovTransitionSpeed * Time.deltaTime);
                 stackCamera.fieldOfView = selfCamera.fieldOfView;
-                letterbox.SetState(Letterbox.State.Default);
+                
+                if (ActOneBeginSequence.ActOneState == -1)
+                    letterbox.SetState(Letterbox.State.Default);
             }
         }
 
