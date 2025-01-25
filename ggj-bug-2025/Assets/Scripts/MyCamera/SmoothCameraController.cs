@@ -1,3 +1,4 @@
+using MyLetterbox;
 using UnityEngine;
 
 namespace MyCamera
@@ -7,6 +8,7 @@ namespace MyCamera
     {
         public Camera selfCamera;
         public Camera stackCamera;
+        public Letterbox letterbox;
         public Transform target; // Takip edilecek nesne
         public Vector3 baseOffset = new Vector3(0, 2, -10); // Temel ofset
         public float followSpeed = 5f; // Takip hızı
@@ -52,12 +54,14 @@ namespace MyCamera
             {
                 selfCamera.fieldOfView = Mathf.Lerp(selfCamera.fieldOfView, _targetFov, _fovTransitionSpeed * Time.deltaTime);
                 stackCamera.fieldOfView = selfCamera.fieldOfView;
+                letterbox.SetState(Letterbox.State.ZoomIn);
             }
             // Kamera bölgeden çıktıysa başlangıç FOV'una geri dön
             else
             {
                 selfCamera.fieldOfView = Mathf.Lerp(selfCamera.fieldOfView, _initialFov, _fovTransitionSpeed * Time.deltaTime);
                 stackCamera.fieldOfView = selfCamera.fieldOfView;
+                letterbox.SetState(Letterbox.State.Default);
             }
         }
 
