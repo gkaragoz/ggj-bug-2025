@@ -2,8 +2,11 @@ using UnityEngine;
 
 namespace MyCamera
 {
+    [RequireComponent(typeof(Camera))]
     public class SmoothCameraController : MonoBehaviour
     {
+        public Camera selfCamera;
+        public Camera stackCamera;
         public Transform target; // Takip edilecek nesne
         public Vector3 baseOffset = new Vector3(0, 2, -10); // Temel ofset
         public float followSpeed = 5f; // Takip hızı
@@ -21,6 +24,17 @@ namespace MyCamera
         private float returnTimer = 0f; // Hareket durduğunda geri dönüş için bekleme zamanlayıcısı
         private bool isMoving = false; // Hedefin hareket edip etmediğini takip eder
         private float easeFactor = 0f; // Geri dönüş için hızlanma faktörü
+        private bool forceReturn;
+        
+        private float _initialFov;
+        private float _targetFov;
+        private float _fovTransitionSpeed;
+        private bool _isInFovZone;
+
+        private void Awake()
+        {
+            _initialFov = selfCamera.fieldOfView;
+        }
 
         void Start()
         {
@@ -31,6 +45,22 @@ namespace MyCamera
             }
         }
 
+        private void Update()
+        {
+            // Kamera şu anda bölgedeyse hedef FOV'a yumuşak geçiş yap
+            if (_isInFovZone)
+            {
+                selfCamera.fieldOfView = Mathf.Lerp(selfCamera.fieldOfView, _targetFov, _fovTransitionSpeed * Time.deltaTime);
+                stackCamera.fieldOfView = selfCamera.fieldOfView;
+            }
+            // Kamera bölgeden çıktıysa başlangıç FOV'una geri dön
+            else
+            {
+                selfCamera.fieldOfView = Mathf.Lerp(selfCamera.fieldOfView, _initialFov, _fovTransitionSpeed * Time.deltaTime);
+                stackCamera.fieldOfView = selfCamera.fieldOfView;
+            }
+        }
+
         void LateUpdate()
         {
             if (target == null) return;
@@ -38,7 +68,7 @@ namespace MyCamera
             // 1. Hedefin hareket yönünü belirle
             float movementX = target.position.x - lastTargetPosition.x;
 
-            if (Mathf.Abs(movementX) > 0.01f) // Yeterince hareket varsa
+            if (Mathf.Abs(movementX) > 0.01f && !forceReturn) // Yeterince hareket varsa
             {
                 isMoving = true;
                 returnTimer = 0f; // Hareket olduğu için zamanlayıcıyı sıfırla
@@ -53,7 +83,7 @@ namespace MyCamera
             }
 
             // 2. Hareket durduktan sonra zamanlayıcıyı başlat
-            if (!isMoving)
+            if (!isMoving || forceReturn)
             {
                 returnTimer += Time.deltaTime;
 
@@ -78,6 +108,30 @@ namespace MyCamera
 
             // 5. Son hedef pozisyonunu güncelle
             lastTargetPosition = target.position;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Fov"))
+            {
+                var fovZone = other.GetComponent<CameraFovZone>();
+                _targetFov = fovZone.targetFOV;
+                _fovTransitionSpeed = fovZone.transitionSpeed;
+                _isInFovZone = true;
+                forceReturn = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Fov"))
+            {
+                var fovZone = other.GetComponent<CameraFovZone>();
+                _targetFov = _initialFov;
+                _fovTransitionSpeed = fovZone.transitionSpeed;
+                _isInFovZone = false;
+                forceReturn = false;
+            }
         }
     }
 }
