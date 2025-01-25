@@ -92088,6 +92088,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PhoneBox
       objectReference: {fileID: 0}
+    - target: {fileID: 434367399604100357, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7854433
+      objectReference: {fileID: 0}
+    - target: {fileID: 434367399604100357, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434367399604100357, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6189336
+      objectReference: {fileID: 0}
+    - target: {fileID: 434367399604100357, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -76.477
+      objectReference: {fileID: 0}
     - target: {fileID: 7129682221172910544, guid: 5e45dd2de312049ab9828698fbf4fba7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -92137,6 +92157,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928186807827295639, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963635996694468954, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
