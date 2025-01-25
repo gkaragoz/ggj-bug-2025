@@ -14,6 +14,7 @@ public class HorizontalCharacterController : MonoBehaviour
     private bool facingRight = true;
     private bool _isFliping = false;
 
+    public bool canMove = true;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,6 +26,7 @@ public class HorizontalCharacterController : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
         if (_isFliping) return;
 
         // Get horizontal input
@@ -49,16 +51,9 @@ public class HorizontalCharacterController : MonoBehaviour
         }
         
         rb.velocity = movement;
-
     }
 
-    void FixedUpdate()
-    {
-        if (_isFliping) return;
-        // Apply movement to Rigidbody
-    }
-
-    void Flip()
+    public void Flip()
     {
         _isFliping = true;
         animator.SetTrigger(ShouldTurnAroundParam);
