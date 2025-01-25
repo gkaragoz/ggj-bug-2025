@@ -1,4 +1,6 @@
+using System;
 using GameSequence;
+using MyCharacter;
 using MyLetterbox;
 using UnityEngine;
 
@@ -7,6 +9,9 @@ namespace MyCamera
     [RequireComponent(typeof(Camera))]
     public class SmoothCameraController : MonoBehaviour
     {
+        public static Action<int> OnEnterZone;
+        public static Action<int> OnExitZone;
+        
         public Camera selfCamera;
         public Camera stackCamera;
         public Letterbox letterbox;
@@ -34,6 +39,8 @@ namespace MyCamera
         private float _fovTransitionSpeed;
         private bool _isInFovZone;
 
+        private int _lastEnteredZoneIndex = -1;
+        
         private void Awake()
         {
             _initialFov = selfCamera.fieldOfView;
@@ -46,6 +53,15 @@ namespace MyCamera
                 lastTargetPosition = target.position;
                 currentOffset = baseOffset; // İlk başta ofseti temel değere ayarla
             }
+            
+            OnExitZone += OnExitZoneHandler;
+        }
+
+        private void OnExitZoneHandler(int obj)
+        {
+            _targetFov = _initialFov;
+            _isInFovZone = false;
+            forceReturn = false;
         }
 
         private void Update()
@@ -128,6 +144,8 @@ namespace MyCamera
                 _fovTransitionSpeed = fovZone.transitionSpeed;
                 _isInFovZone = true;
                 forceReturn = true;
+                OnEnterZone?.Invoke(fovZone.fovZoneID);
+                other.GetComponent<Collider>().enabled = false;
             }
         }
 
