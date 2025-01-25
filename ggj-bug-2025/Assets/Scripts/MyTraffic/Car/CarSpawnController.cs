@@ -1,9 +1,9 @@
-using System;
 using System.Collections;
+using MyTraffic.Light;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Car
+namespace MyTraffic.Car
 {
     public class CarSpawnController : MonoBehaviour
     {
