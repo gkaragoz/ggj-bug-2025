@@ -11688,6 +11688,8 @@ GameObject:
   - component: {fileID: 260376810}
   - component: {fileID: 260376809}
   - component: {fileID: 260376808}
+  - component: {fileID: 260376813}
+  - component: {fileID: 260376812}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -11781,6 +11783,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &260376812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260376807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6c6feda1b8450f8e9cef9fe8b72a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  acceleration: 2
+  deceleration: 5
+--- !u!54 &260376813
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260376807}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 64
+  m_CollisionDetection: 0
 --- !u!1001 &260422875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13825,7 +13869,7 @@ GameObject:
   - component: {fileID: 306946194}
   - component: {fileID: 306946193}
   - component: {fileID: 306946191}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14793,6 +14837,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14921,6 +14966,25 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57264e2d382c49e498cfadc3b405eda3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 260376811}
+  baseOffset: {x: 0, y: 2.5, z: -14}
+  followSpeed: 5
+  offsetChangeSpeed: 2
+  maxOffsetX: 3.5
+  returnSpeed: 1
+  returnDelay: 0.5
 --- !u!1001 &334557303
 PrefabInstance:
   m_ObjectHideFlags: 0
