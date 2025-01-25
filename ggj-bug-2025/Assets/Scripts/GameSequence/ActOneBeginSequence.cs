@@ -1,5 +1,6 @@
 using DG.Tweening;
 using MyLetterbox;
+using PhoneAnimation;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace GameSequence
         public Letterbox letterbox;
         public Animator characterAnimator;
         public HorizontalCharacterController characterController;
+        public PhoneController phoneController;
+        public AudioSource bgMusic;
 
         private void Start()
         {
@@ -21,10 +24,17 @@ namespace GameSequence
         
             var sequence = DOTween.Sequence();
             sequence.Append(gameTitle.DOFade(1, 3));
+            sequence.AppendCallback(() =>
+            {
+                phoneController.StartRinging();
+            });
             sequence.Append(gameTitle.DOFade(0, 2)).SetDelay(3);
             sequence.AppendCallback(() => letterbox.SetState(Letterbox.State.Default));
-            sequence.Join(DOVirtual.DelayedCall(2, () => characterAnimator.SetTrigger("FallAnim")));
-            sequence.Append(DOVirtual.DelayedCall(12.5f, () => characterController.canMove = true));
+            sequence.Join(DOVirtual.DelayedCall(2, () =>
+            {
+                characterAnimator.SetTrigger("FallAnim");
+            }));
+            sequence.Append(DOVirtual.DelayedCall(14.5f, () => characterController.canMove = true));
             sequence.OnComplete(() =>
             {
                 ActOneState = -1;
