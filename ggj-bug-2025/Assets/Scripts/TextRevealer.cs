@@ -10,41 +10,36 @@ namespace MyNamespace
         public float revealSpeed = 0.05f;     // Harf başına geçen süre
 
         private string fullText;              // Tam metin
-        private bool isRevealing = false;     // Animasyon çalışıyor mu?
 
+        private Coroutine _coroutine;
+        
         void Start()
         {
-            // Eğer metin ayarlanmışsa otomatik başlat
-            if (textComponent != null)
-            {
-                fullText = textComponent.text; // TextMeshPro'daki tam metni al
-                textComponent.text = "";       // Önce boş yap
-                StartCoroutine(RevealText());
-            }
+            fullText = string.Empty;
+            textComponent.text = string.Empty;
         }
 
         public IEnumerator RevealText()
         {
-            isRevealing = true;
-
             for (int i = 0; i <= fullText.Length; i++)
             {
                 textComponent.text = fullText.Substring(0, i); // İlk i harfi göster
                 yield return new WaitForSeconds(revealSpeed);  // Belirlenen süre kadar bekle
             }
-
-            isRevealing = false;
         }
 
         // Eğer farklı bir metin için tekrar çalıştırmak istersen
         public void StartReveal(string newText)
         {
-            if (!isRevealing)
+            if (_coroutine != null)
             {
-                fullText = newText;
-                textComponent.text = "";
-                StartCoroutine(RevealText());
+                StopCoroutine(_coroutine);
             }
+            
+            fullText = newText;
+            textComponent.text = "";
+
+            _coroutine = StartCoroutine(RevealText());
         }
 
         public void HideText()

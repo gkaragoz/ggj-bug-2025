@@ -10919,7 +10919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Soundtrack 1
+  m_text: Telephone
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0bebb0f054370454288c85735099c3d6, type: 2}
   m_sharedMaterial: {fileID: 7903598329721039183, guid: 0bebb0f054370454288c85735099c3d6,
@@ -78927,7 +78927,7 @@ MonoBehaviour:
   shakeStrength: 4
   bubbleCanvasGroup: {fileID: 1517994353}
   bgMusic: {fileID: 180591883}
-  bgMusicClip: {fileID: 8300000, guid: f4597f85320fe4782b98e42e427c2bef, type: 3}
+  bgMusicClip: {fileID: 8300000, guid: edc8526d7738c4979adda0e8f7d95cd0, type: 3}
   textRevealer: {fileID: 2061205501}
   infoBarController: {fileID: 1234783329}
 --- !u!82 &1792747810
@@ -91832,7 +91832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 498867810}
-  revealSpeed: 0.05
+  revealSpeed: 0.0125
 --- !u!1001 &2062486765
 PrefabInstance:
   m_ObjectHideFlags: 0

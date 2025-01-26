@@ -85,19 +85,23 @@ namespace PhoneAnimation
             {
                 textRevealer.StartReveal("Villain: Seninle işim daha bitmedi!");
             }));
-            seq.Insert(2f, DOVirtual.DelayedCall(0, () =>
+            seq.Insert(3f, DOVirtual.DelayedCall(0, () =>
             {
                 textRevealer.StartReveal("Detective Fox: Hanımefendi kimsiniz siz?");
             }));
-            seq.Insert(3.5f, DOVirtual.DelayedCall(0, () =>
+            seq.Insert(5f, DOVirtual.DelayedCall(0, () =>
             {
                 textRevealer.StartReveal("Villain: Ananı laciverde boyayacağım, bekle sen!");
             }));
-            seq.Insert(4.5f, DOVirtual.DelayedCall(0, () =>
+            seq.Insert(7.5f, DOVirtual.DelayedCall(0, () =>
             {
                 textRevealer.StartReveal("Detective Fox: Abla ne diyon sen?");
             }));
-            seq.Insert(7f, DOVirtual.DelayedCall(0, () =>
+            seq.Insert(9f, DOVirtual.DelayedCall(0, () =>
+            {
+                textRevealer.HideText();
+            }));
+            seq.Insert(15f, DOVirtual.DelayedCall(0, () =>
             {
                 textRevealer.HideText();
             }));
@@ -119,6 +123,12 @@ namespace PhoneAnimation
             bgMusic.clip = bgMusicClip;
             bgMusic.loop = true;
             bgMusic.Play();
+            
+            infoBarController.Show();
+            DOVirtual.DelayedCall(4f, () =>
+            {
+                infoBarController.Hide();
+            });
         }
     }
 }
