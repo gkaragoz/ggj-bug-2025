@@ -37605,6 +37605,48 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &849103294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849103290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 31893e603ed4d4422afc0e256fcb43d6, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1792747807}
+          m_TargetAssemblyTypeName: PhoneAnimation.PhoneController, Assembly-CSharp
+          m_MethodName: StopRinging
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1792747807}
+          m_TargetAssemblyTypeName: PhoneAnimation.PhoneController, Assembly-CSharp
+          m_MethodName: PlayPickupSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &851395070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63260,6 +63302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 63220693599104201, guid: 057514ce6bac34685b650aea73f1d340,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7727361876518433738, guid: 057514ce6bac34685b650aea73f1d340,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -63345,7 +63392,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2011711337}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 63220693599104201, guid: 057514ce6bac34685b650aea73f1d340,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898625463}
   m_SourcePrefab: {fileID: 100100000, guid: 057514ce6bac34685b650aea73f1d340, type: 3}
 --- !u!4 &1417954944 stripped
 Transform:
@@ -63359,7 +63410,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1417954943}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1898625458}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80155a7eddafd42ec8f4e5ac50065b6f, type: 3}
@@ -72360,6 +72411,8 @@ PlayableDirector:
     value: {fileID: 25791907}
   - key: {fileID: 559768830114103262, guid: baec830d81d69458684a435caad7f0c7, type: 2}
     value: {fileID: 849103290}
+  - key: {fileID: -2966324830540255966, guid: baec830d81d69458684a435caad7f0c7, type: 2}
+    value: {fileID: 849103294}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1633137021
@@ -83945,6 +83998,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1898010584}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1898625458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 63220693599104201, guid: 057514ce6bac34685b650aea73f1d340,
+    type: 3}
+  m_PrefabInstance: {fileID: 1417954943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1898625463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898625458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ccdfe02abeac4812bb23c6d7bd181ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1901747884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95621,6 +95692,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 77.85
       objectReference: {fileID: 0}
+    - target: {fileID: 6158987642162923127, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7129682221172910544, guid: 5e45dd2de312049ab9828698fbf4fba7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -95725,6 +95801,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 849103293}
+    - targetCorrespondingSourceObject: {fileID: 4543416665459071541, guid: 5e45dd2de312049ab9828698fbf4fba7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 849103294}
   m_SourcePrefab: {fileID: 100100000, guid: 5e45dd2de312049ab9828698fbf4fba7, type: 3}
 --- !u!1001 &8800812379421923811
 PrefabInstance:

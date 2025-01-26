@@ -9,9 +9,6 @@ namespace MyCamera
     [RequireComponent(typeof(Camera))]
     public class SmoothCameraController : MonoBehaviour
     {
-        public static Action<int> OnEnterZone;
-        public static Action<int> OnExitZone;
-        
         public Camera selfCamera;
         public Camera stackCamera;
         public Letterbox letterbox;
@@ -54,10 +51,27 @@ namespace MyCamera
                 currentOffset = baseOffset; // İlk başta ofseti temel değere ayarla
             }
             
-            OnExitZone += OnExitZoneHandler;
+            PlayerInteractionController.OnEnterZone += OnEnterZoneHandler;
+            PlayerInteractionController.OnExitZone += OnExitZoneHandler;
+            
+        }
+        
+
+        private void OnEnterZoneHandler(Collider col,int obj)
+        {
+            
+            if (col.CompareTag("Fov"))
+            {
+                var fovZone = col.GetComponent<CameraFovZone>();
+                _targetFov = fovZone.targetFOV;
+                _fovTransitionSpeed = fovZone.transitionSpeed;
+                _isInFovZone = true;
+                forceReturn = true;
+                col.GetComponent<Collider>().enabled = false;
+            }
         }
 
-        private void OnExitZoneHandler(int obj)
+        private void OnExitZoneHandler(Collider col,int obj)
         {
             _targetFov = _initialFov;
             _isInFovZone = false;
@@ -131,34 +145,8 @@ namespace MyCamera
             desiredPosition.y = baseOffset.y; // Y eksenini sabit tut
             transform.position = Vector3.Lerp(transform.position, desiredPosition, followSpeed * Time.deltaTime);
 
-            // 5. Son hedef pozisyonunu güncelle
             lastTargetPosition = target.position;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Fov"))
-            {
-                var fovZone = other.GetComponent<CameraFovZone>();
-                _targetFov = fovZone.targetFOV;
-                _fovTransitionSpeed = fovZone.transitionSpeed;
-                _isInFovZone = true;
-                forceReturn = true;
-                OnEnterZone?.Invoke(fovZone.fovZoneID);
-                other.GetComponent<Collider>().enabled = false;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Fov"))
-            {
-                var fovZone = other.GetComponent<CameraFovZone>();
-                _targetFov = _initialFov;
-                _fovTransitionSpeed = fovZone.transitionSpeed;
-                _isInFovZone = false;
-                forceReturn = false;
-            }
-        }
     }
 }

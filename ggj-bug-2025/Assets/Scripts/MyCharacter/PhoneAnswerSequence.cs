@@ -16,10 +16,10 @@ namespace MyCharacter
         public int zoneIndex;
         private void Awake()
         {
-            SmoothCameraController.OnEnterZone += OnEnterZoneHandler;
+            PlayerInteractionController.OnEnterZone += OnEnterZoneHandler;
         }
 
-        private void OnEnterZoneHandler(int index)
+        private void OnEnterZoneHandler(Collider col,int index)
         {
             if (index != zoneIndex)
             {
@@ -37,7 +37,7 @@ namespace MyCharacter
                 float duration = (float)phoneAnswerDirector.duration;
                 DOVirtual.DelayedCall(duration, () =>
                 {
-                    SmoothCameraController.OnExitZone?.Invoke(zoneIndex);
+                    PlayerInteractionController.OnExitZone?.Invoke(col,zoneIndex);
                     var pos = characterController.transform.position;
                     pos.z = 2.2f;
                     characterController.transform.SetParent(null);
@@ -50,7 +50,7 @@ namespace MyCharacter
 
         private void OnDestroy()
         {
-            SmoothCameraController.OnEnterZone -= OnEnterZoneHandler;
+            PlayerInteractionController.OnEnterZone -= OnEnterZoneHandler;
         }
     }
 }

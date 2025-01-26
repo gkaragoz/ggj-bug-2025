@@ -46,7 +46,7 @@ namespace GameSequence
                 characterAnimator.SetTrigger("FallAnim");
             }));
             sequence.Append(DOVirtual.DelayedCall(10.5f, () => tutorialController.ShowTutorial()));
-            sequence.Append(DOVirtual.DelayedCall(16.5f, () => characterController.canMove = true));
+            sequence.Append(DOVirtual.DelayedCall(1f, () => characterController.canMove = true));
             sequence.OnComplete(() =>
             {
                 ActOneState = -1;
