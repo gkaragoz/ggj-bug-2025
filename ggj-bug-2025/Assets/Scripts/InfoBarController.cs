@@ -17,7 +17,7 @@ namespace DefaultNamespace
         private void Awake()
         {
             rectTransform.sizeDelta = new Vector2(HideSize, rectTransform.sizeDelta.y);
-            rectTransform.anchoredPosition = new Vector2(0f, -Letterbox.DefaultSize * 1.5f);
+            rectTransform.anchoredPosition = new Vector2(0f, -Letterbox.ZoomInSize * 1.5f);
         }
 
         private void Update()

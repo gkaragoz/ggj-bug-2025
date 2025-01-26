@@ -37620,6 +37620,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 31893e603ed4d4422afc0e256fcb43d6, type: 2}
+    - {fileID: 11400000, guid: 1bb391726ba4d4397bdab7b75aa47b3a, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -37638,6 +37639,20 @@ MonoBehaviour:
         - m_Target: {fileID: 1792747807}
           m_TargetAssemblyTypeName: PhoneAnimation.PhoneController, Assembly-CSharp
           m_MethodName: PlayPickupSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1792747807}
+          m_TargetAssemblyTypeName: PhoneAnimation.PhoneController, Assembly-CSharp
+          m_MethodName: PlayReleaseSound
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
