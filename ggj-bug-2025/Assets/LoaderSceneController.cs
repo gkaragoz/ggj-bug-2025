@@ -12,13 +12,16 @@ public class LoaderSceneController : MonoBehaviour
 
     private void Awake()
     {
-        quitButton.onClick.AddListener(() => { Application.Quit(); });
+        quitButton.onClick.AddListener(() =>
+        {
+            Application.Quit();
+        });
     }
 
     private void Start()
     {
-        _asyncOperation = SceneManager.LoadSceneAsync(1);
-        _asyncOperation.allowSceneActivation = false;
+        _asyncOperation = SceneManager.LoadSceneAsync("Main");
+        if (_asyncOperation != null) _asyncOperation.allowSceneActivation = false;
     }
 
 
@@ -28,13 +31,16 @@ public class LoaderSceneController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape)) return;
 
-            if (Event.current != null && Event.current.isKey)
+            if (Event.current != null && Event.current.isMouse)
             {
-                if (_asyncOperation is { progress: >= 0.9f })
-                {
-                    _asyncOperation.allowSceneActivation = true;
-                }
+               return;
             }
+            
+            if (_asyncOperation != null && _asyncOperation.progress >= 0.9f)
+            {
+                _asyncOperation.allowSceneActivation = true;
+            }
+            
         }
     }
 }
