@@ -14,6 +14,7 @@ namespace PhoneAnimation
         [SerializeField] private Transform extraTarget;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioSource pickupSource;
+        [SerializeField] private AudioSource conversationSource;
         [SerializeField] private AudioSource releaseSource;
         [SerializeField] private AudioSource phoneConversationEndSource;
         [SerializeField] private Vector3 targetScale = new Vector3(-1.3f, 1.3f, 1.3f);
@@ -79,6 +80,7 @@ namespace PhoneAnimation
         public void PlayPickupSound()
         {
             pickupSource.Play();
+            conversationSource.Play();
 
             var seq = DOTween.Sequence();
             seq.Insert(0.5f, DOVirtual.DelayedCall(0, () =>
@@ -97,11 +99,11 @@ namespace PhoneAnimation
             {
                 textRevealer.StartReveal("Detective Fox: Abla ne diyon sen?");
             }));
-            seq.Insert(9f, DOVirtual.DelayedCall(0, () =>
+            seq.Insert(11f, DOVirtual.DelayedCall(0, () =>
             {
                 textRevealer.HideText();
             }));
-            seq.Insert(15f, DOVirtual.DelayedCall(0, () =>
+            seq.Insert(13f, DOVirtual.DelayedCall(0, () =>
             {
                 textRevealer.HideText();
             }));

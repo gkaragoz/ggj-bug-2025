@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd4c4dbb3bf4f40826551b03da04c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fovZoneID: 0
   targetFOV: 20
   transitionSpeed: 2
 --- !u!1 &5467598858397397433
