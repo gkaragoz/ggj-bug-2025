@@ -11,9 +11,9 @@ namespace MyLetterbox
         [SerializeField] private float transitionSpeed;
 
         private State _state;
-        private const float DefaultSize = 70f;
-        private const float CoveredSize = 500f;
-        private const float ZoomInSize = 140f;
+        public const float DefaultSize = 70f;
+        public const float CoveredSize = 500f;
+        public const float ZoomInSize = 140f;
 
         public enum State
         {

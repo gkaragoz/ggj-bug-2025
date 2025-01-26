@@ -12,6 +12,7 @@ namespace GameSequence
         public static int ActOneState = 0;
     
         public TMP_Text gameTitle;
+        public TMP_Text gameSubTitle;
         public Letterbox letterbox;
         public Animator characterAnimator;
         public HorizontalCharacterController characterController;
@@ -25,12 +26,20 @@ namespace GameSequence
             letterbox.CompleteCurrentStateImmediately();
         
             var sequence = DOTween.Sequence();
-            sequence.Append(gameTitle.DOFade(1, 3));
+            sequence.AppendCallback(() =>
+            {
+                gameTitle.DOFade(1, 3);
+                gameSubTitle.DOFade(1, 3);
+            });
             sequence.AppendCallback(() =>
             {
                 phoneController.StartRinging();
             });
-            sequence.Append(gameTitle.DOFade(0, 2)).SetDelay(3);
+            sequence.AppendCallback(() =>
+            {
+                gameTitle.DOFade(0, 2);
+                gameSubTitle.DOFade(0, 2);
+            }).SetDelay(3);
             sequence.AppendCallback(() => letterbox.SetState(Letterbox.State.Default));
             sequence.Join(DOVirtual.DelayedCall(2, () =>
             {
