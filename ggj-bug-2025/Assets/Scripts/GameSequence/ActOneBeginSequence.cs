@@ -26,27 +26,30 @@ namespace GameSequence
             letterbox.CompleteCurrentStateImmediately();
         
             var sequence = DOTween.Sequence();
-            sequence.AppendCallback(() =>
+            sequence.Insert(1,DOVirtual.DelayedCall(0, () =>
             {
                 gameTitle.DOFade(1, 3);
                 gameSubTitle.DOFade(1, 3);
-            });
-            sequence.AppendCallback(() =>
+            }));
+            sequence.Insert(2, DOVirtual.DelayedCall(0, () =>
             {
                 phoneController.StartRinging();
-            });
-            sequence.AppendCallback(() =>
+            }));
+            sequence.Insert(3, DOVirtual.DelayedCall(0, () =>
             {
-                gameTitle.DOFade(0, 2);
-                gameSubTitle.DOFade(0, 2);
-            }).SetDelay(3);
-            sequence.AppendCallback(() => letterbox.SetState(Letterbox.State.Default));
-            sequence.Join(DOVirtual.DelayedCall(2, () =>
+                gameTitle.DOFade(0, 5);
+                gameSubTitle.DOFade(0, 5);  
+            }));
+            sequence.Insert(5, DOVirtual.DelayedCall(0, () =>
+            {
+                letterbox.SetState(Letterbox.State.Default);
+            }));
+            sequence.Insert(5, DOVirtual.DelayedCall(0, () =>
             {
                 characterAnimator.SetTrigger("FallAnim");
             }));
             sequence.Append(DOVirtual.DelayedCall(10.5f, () => tutorialController.ShowTutorial()));
-            sequence.Append(DOVirtual.DelayedCall(1f, () => characterController.canMove = true));
+            sequence.Append(DOVirtual.DelayedCall(2f, () => characterController.canMove = true));
             sequence.OnComplete(() =>
             {
                 ActOneState = -1;
