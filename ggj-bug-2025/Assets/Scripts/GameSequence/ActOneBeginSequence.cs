@@ -55,7 +55,7 @@ namespace GameSequence
                 ShowPhoneBubbleAct?.Invoke();
             }));
             sequence.Append(DOVirtual.DelayedCall(10.5f, () => tutorialController.ShowTutorial()));
-            sequence.Append(DOVirtual.DelayedCall(2f, () => characterController.canMove = true));
+            sequence.Append(DOVirtual.DelayedCall(1f, () => characterController.canMove = true));
             sequence.OnComplete(() =>
             {
                 ActOneState = -1;
