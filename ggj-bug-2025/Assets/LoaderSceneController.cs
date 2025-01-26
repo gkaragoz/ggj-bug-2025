@@ -24,7 +24,7 @@ public class LoaderSceneController : MonoBehaviour
         if (_asyncOperation != null) _asyncOperation.allowSceneActivation = false;
     }
 
-
+ 
     private void Update()
     {
         if (Input.anyKeyDown)

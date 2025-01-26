@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using DefaultNamespace;
 using DG.Tweening;
 using GameSequence;
+using MyNamespace;
 using UnityEngine;
 
 namespace PhoneAnimation
@@ -19,6 +21,8 @@ namespace PhoneAnimation
         [SerializeField] private CanvasGroup bubbleCanvasGroup;
         [SerializeField] private AudioSource bgMusic;
         [SerializeField] private AudioClip bgMusicClip;
+        [SerializeField] private TextRevealer textRevealer;
+        [SerializeField] private InfoBarController infoBarController;
 
         private Sequence _ringingSequence;
         private Coroutine _ringingCoroutine;
@@ -75,6 +79,28 @@ namespace PhoneAnimation
         public void PlayPickupSound()
         {
             pickupSource.Play();
+
+            var seq = DOTween.Sequence();
+            seq.Insert(0.5f, DOVirtual.DelayedCall(0, () =>
+            {
+                textRevealer.StartReveal("Villain: Seninle işim daha bitmedi!");
+            }));
+            seq.Insert(2f, DOVirtual.DelayedCall(0, () =>
+            {
+                textRevealer.StartReveal("Detective Fox: Hanımefendi kimsiniz siz?");
+            }));
+            seq.Insert(3.5f, DOVirtual.DelayedCall(0, () =>
+            {
+                textRevealer.StartReveal("Villain: Ananı laciverde boyayacağım, bekle sen!");
+            }));
+            seq.Insert(4.5f, DOVirtual.DelayedCall(0, () =>
+            {
+                textRevealer.StartReveal("Detective Fox: Abla ne diyon sen?");
+            }));
+            seq.Insert(7f, DOVirtual.DelayedCall(0, () =>
+            {
+                textRevealer.HideText();
+            }));
         }
         
         public void PlayPhoneConversationEndSound()
