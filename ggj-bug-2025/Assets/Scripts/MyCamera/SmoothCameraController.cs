@@ -80,6 +80,9 @@ namespace MyCamera
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
+            
             // Kamera şu anda bölgedeyse hedef FOV'a yumuşak geçiş yap
             if (_isInFovZone)
             {
