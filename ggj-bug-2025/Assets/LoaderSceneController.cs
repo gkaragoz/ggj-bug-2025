@@ -29,7 +29,11 @@ public class LoaderSceneController : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) return;
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+                return;
+            }
 
             if (Event.current != null && Event.current.isMouse)
             {
