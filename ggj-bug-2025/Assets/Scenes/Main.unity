@@ -77974,7 +77974,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -78070,9 +78070,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 761767366}
   audioSource: {fileID: 1792747806}
-  targetScale: {x: -1.3, y: 1.3, z: 1.3}
-  animationDuration: 0.5
-  shakeStrength: 0.5
+  targetScale: {x: -1.2, y: 1.2, z: 1.2}
+  shakeStrength: 4
 --- !u!1001 &1793064501
 PrefabInstance:
   m_ObjectHideFlags: 0

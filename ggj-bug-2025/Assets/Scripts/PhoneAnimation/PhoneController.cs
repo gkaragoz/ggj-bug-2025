@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -8,29 +10,49 @@ namespace PhoneAnimation
         [SerializeField] private Transform target;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private Vector3 targetScale = new Vector3(-1.3f, 1.3f, 1.3f);
-        [SerializeField] private float animationDuration = 0.5f;
         [SerializeField] private float shakeStrength = 0.5f;
 
         private Sequence _ringingSequence;
+        private Coroutine _ringingCoroutine;
         private Vector3 _initialScale;
-        
+        private const float AudioDuration = 6.104f;
+        private const float ShakeDuration = 3f;
+
+        private void Awake()
+        {
+            _initialScale = target.localScale;
+        }
+
         public void StartRinging()
         {
-            audioSource.Play();
-            _initialScale = target.localScale;
-            _ringingSequence?.Kill();
-            _ringingSequence = DOTween.Sequence();
-            _ringingSequence.Append(target.DOScale(targetScale, animationDuration));
-            _ringingSequence.Join(target.DOShakeRotation(animationDuration, Vector3.one * shakeStrength));
-            _ringingSequence.Append(target.DOScale(_initialScale, animationDuration));
-            _ringingSequence.SetLoops(-1, LoopType.Restart);
-            _ringingSequence.Play();
+            if (_ringingSequence != null)
+                StopCoroutine(_ringingCoroutine);
+            
+            _ringingCoroutine = StartCoroutine(Do());
+        }
+
+        private IEnumerator Do()
+        {
+            while(true)
+            {
+                audioSource.Play();
+                _ringingSequence?.Kill();
+                _ringingSequence = DOTween.Sequence();
+                _ringingSequence.Join(target.DOScale(targetScale, 0.1f));
+                _ringingSequence.Append(target.DOShakeRotation(ShakeDuration, Vector3.one * shakeStrength));
+                _ringingSequence.Append(target.DOScale(_initialScale, 0.1f));
+                _ringingSequence.Play();
+
+                yield return new WaitForSeconds(AudioDuration);
+            }
         }
 
         public void StopRinging()
         {
-            audioSource.Stop();
+            if (_ringingCoroutine != null)
+                StopCoroutine(_ringingCoroutine);
             _ringingSequence?.Kill();
+            audioSource.Stop();
             target.localScale = _initialScale;
         }
     }
