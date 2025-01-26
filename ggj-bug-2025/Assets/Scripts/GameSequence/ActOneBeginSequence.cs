@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using MyLetterbox;
 using PhoneAnimation;
@@ -10,6 +11,7 @@ namespace GameSequence
     public class ActOneBeginSequence : MonoBehaviour
     {
         public static int ActOneState = 0;
+        public static event Action ShowPhoneBubbleAct;
     
         public TMP_Text gameTitle;
         public TMP_Text gameSubTitle;
@@ -47,6 +49,10 @@ namespace GameSequence
             sequence.Insert(5, DOVirtual.DelayedCall(0, () =>
             {
                 characterAnimator.SetTrigger("FallAnim");
+            }));
+            sequence.Insert(7, DOVirtual.DelayedCall(0, () =>
+            {
+                ShowPhoneBubbleAct?.Invoke();
             }));
             sequence.Append(DOVirtual.DelayedCall(10.5f, () => tutorialController.ShowTutorial()));
             sequence.Append(DOVirtual.DelayedCall(2f, () => characterController.canMove = true));
