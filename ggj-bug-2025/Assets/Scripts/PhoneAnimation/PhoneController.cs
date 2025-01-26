@@ -13,9 +13,12 @@ namespace PhoneAnimation
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioSource pickupSource;
         [SerializeField] private AudioSource releaseSource;
+        [SerializeField] private AudioSource phoneConversationEndSource;
         [SerializeField] private Vector3 targetScale = new Vector3(-1.3f, 1.3f, 1.3f);
         [SerializeField] private float shakeStrength = 0.5f;
         [SerializeField] private CanvasGroup bubbleCanvasGroup;
+        [SerializeField] private AudioSource bgMusic;
+        [SerializeField] private AudioClip bgMusicClip;
 
         private Sequence _ringingSequence;
         private Coroutine _ringingCoroutine;
@@ -73,10 +76,23 @@ namespace PhoneAnimation
         {
             pickupSource.Play();
         }
+        
+        public void PlayPhoneConversationEndSound()
+        {
+            phoneConversationEndSource.Play();
+        }
 
         public void PlayReleaseSound()
         {
             releaseSource.Play();
+            ChangeBgMusic();
+        }
+
+        private void ChangeBgMusic()
+        {
+            bgMusic.clip = bgMusicClip;
+            bgMusic.loop = true;
+            bgMusic.Play();
         }
     }
 }
