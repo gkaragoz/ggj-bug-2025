@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ public class HorizontalCharacterController : MonoBehaviour
     private Vector3 movement;
     private bool facingRight = true;
     private bool _isFliping = false;
+
+    public static event Action OnWalkTutorialFinished;
+    private float _walkDurationToCompleteTutorial = 1f;
+    private float _currentWalkDuration = 0f;
+    private bool _isWalkTutorialEventTriggered;
 
     public bool canMove = true;
     void Start()
@@ -33,8 +39,7 @@ public class HorizontalCharacterController : MonoBehaviour
         // Get horizontal input
         float horizontal = Input.GetAxis("Horizontal");
         movement = new Vector3(horizontal * moveSpeed, rb.velocity.y, rb.velocity.z);
-
-
+        
         // Set Speed parameter in Animator
         if (animator != null)
         {
@@ -52,6 +57,8 @@ public class HorizontalCharacterController : MonoBehaviour
         }
         
         rb.velocity = movement;
+
+        WalkTutorialEventTrigger(horizontal);
     }
 
     public void Flip()
@@ -61,5 +68,19 @@ public class HorizontalCharacterController : MonoBehaviour
         facingRight = !facingRight;
         var lookRotation = Vector3.up * (90 * (facingRight ? 1 : -1));
         transform.DOLocalRotate(lookRotation, .75f).OnComplete(() => _isFliping = false);
+    }
+
+    private void WalkTutorialEventTrigger(float horizontal)
+    {
+        if (horizontal != 0 && !_isWalkTutorialEventTriggered)
+        {
+            _currentWalkDuration += Time.deltaTime;
+
+            if (_currentWalkDuration >= _walkDurationToCompleteTutorial)
+            {
+                OnWalkTutorialFinished?.Invoke();
+                _isWalkTutorialEventTriggered = true;
+            }
+        }
     }
 }

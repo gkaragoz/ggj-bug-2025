@@ -2,6 +2,7 @@ using DG.Tweening;
 using MyLetterbox;
 using PhoneAnimation;
 using TMPro;
+using Tutorial;
 using UnityEngine;
 
 namespace GameSequence
@@ -16,6 +17,7 @@ namespace GameSequence
         public HorizontalCharacterController characterController;
         public PhoneController phoneController;
         public AudioSource bgMusic;
+        public TutorialController tutorialController;
 
         private void Start()
         {
@@ -34,7 +36,8 @@ namespace GameSequence
             {
                 characterAnimator.SetTrigger("FallAnim");
             }));
-            sequence.Append(DOVirtual.DelayedCall(14.5f, () => characterController.canMove = true));
+            sequence.Append(DOVirtual.DelayedCall(10.5f, () => tutorialController.ShowTutorial()));
+            sequence.Append(DOVirtual.DelayedCall(16.5f, () => characterController.canMove = true));
             sequence.OnComplete(() =>
             {
                 ActOneState = -1;
