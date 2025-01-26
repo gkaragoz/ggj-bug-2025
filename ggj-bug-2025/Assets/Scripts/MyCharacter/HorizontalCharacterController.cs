@@ -24,6 +24,7 @@ public class HorizontalCharacterController : MonoBehaviour
     public bool canMove = true;
     void Start()
     {
+        canMove = false;
         rb = GetComponent<Rigidbody>();
         if (animator == null)
         {
