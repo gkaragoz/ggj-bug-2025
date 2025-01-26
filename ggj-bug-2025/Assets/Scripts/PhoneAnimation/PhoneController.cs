@@ -9,6 +9,8 @@ namespace PhoneAnimation
     {
         [SerializeField] private Transform target;
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioSource pickupSource;
+        [SerializeField] private AudioSource releaseSource;
         [SerializeField] private Vector3 targetScale = new Vector3(-1.3f, 1.3f, 1.3f);
         [SerializeField] private float shakeStrength = 0.5f;
 
@@ -54,6 +56,16 @@ namespace PhoneAnimation
             _ringingSequence?.Kill();
             audioSource.Stop();
             target.localScale = _initialScale;
+        }
+
+        public void PlayPickupSound()
+        {
+            pickupSource.Play();
+        }
+
+        public void PlayReleaseSound()
+        {
+            releaseSource.Play();
         }
     }
 }
