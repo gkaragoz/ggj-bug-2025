@@ -13,7 +13,7 @@ public class HorizontalCharacterController : MonoBehaviour
     private AudioSource walkAudioSource;
     private Rigidbody rb;
     private Vector3 movement;
-    private bool facingRight = true;
+    public bool facingRight = true;
     private bool _isFliping = false;
 
     public static event Action OnWalkTutorialFinished;

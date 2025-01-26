@@ -43,6 +43,8 @@ namespace MyCharacter
                     characterController.transform.SetParent(null);
                     characterController.transform.position = pos;
                     characterController.canMove = true;
+                    characterController.facingRight = false;
+                    characterController.Flip();
                 });
             }
 
