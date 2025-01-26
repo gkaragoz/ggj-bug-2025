@@ -78887,7 +78887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 761767366}
-  extraTarget: {fileID: 0}
+  extraTarget: {fileID: 1802224472}
   audioSource: {fileID: 1792747806}
   pickupSource: {fileID: 1792747811}
   releaseSource: {fileID: 1792747810}
@@ -79732,6 +79732,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 488566, guid: b2e8639d9a0fc7b48b6d71f8950a7686,
     type: 3}
   m_PrefabInstance: {fileID: 1801856098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1802224472 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7775031511513219480, guid: f6fb55c910846456284227e21708ff65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1517994352}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1803955232
 PrefabInstance:
