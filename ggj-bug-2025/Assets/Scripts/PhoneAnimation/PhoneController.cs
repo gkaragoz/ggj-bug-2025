@@ -115,7 +115,8 @@ namespace PhoneAnimation
         public void PlayReleaseSound()
         {
             releaseSource.Play();
-            ChangeBgMusic();
+
+            DOVirtual.DelayedCall(3f, ChangeBgMusic);
         }
 
         private void ChangeBgMusic()

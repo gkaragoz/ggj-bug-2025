@@ -7,8 +7,8 @@ namespace MyNamespace
     public class TextRevealer : MonoBehaviour
     {
         public TextMeshProUGUI textComponent; // TextMeshPro nesnesi
-        public float revealSpeed = 0.05f;     // Harf başına geçen süre
 
+        private const float revealSpeed = 0.00625f;
         private string fullText;              // Tam metin
 
         private Coroutine _coroutine;
